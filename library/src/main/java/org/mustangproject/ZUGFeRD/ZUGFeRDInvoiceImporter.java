@@ -260,6 +260,10 @@ public class ZUGFeRDInvoiceImporter {
 	private void setDocument() throws ParserConfigurationException, IOException, SAXException, ParseException {
 		final DocumentBuilderFactory xmlFact = DocumentBuilderFactory.newInstance();
 		xmlFact.setNamespaceAware(true);
+		xmlFact.setExpandEntityReferences(false);
+		xmlFact.setFeature("http://xml.org/sax/features/external-general-entities", false);
+		xmlFact.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+		xmlFact.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 		final DocumentBuilder builder = xmlFact.newDocumentBuilder();
 		final ByteArrayInputStream is = new ByteArrayInputStream(rawXML);
 		///    is.skip(guessBOMSize(is));
